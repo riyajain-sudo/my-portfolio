@@ -1,0 +1,46 @@
+.helix {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  animation: helix-float 7s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.helix-strand-a,
+.helix-strand-b {
+  animation: helix-sway 9s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.helix-strand-b {
+  animation-delay: -1.2s;
+}
+
+.helix-rung {
+  animation: helix-pulse 4.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes helix-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes helix-sway {
+  0%, 100% { transform: rotate(-1.2deg) scaleX(1); }
+  50% { transform: rotate(1.2deg) scaleX(1.02); }
+}
+
+@keyframes helix-pulse {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .helix,
+  .helix-strand-a,
+  .helix-strand-b,
+  .helix-rung {
+    animation: none !important;
+  }
+}

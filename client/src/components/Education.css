@@ -1,0 +1,84 @@
+.education-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.education-card:hover {
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-3px);
+}
+
+.education-card__main h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.education-card__school {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.education-card__period {
+  margin-top: 4px;
+  font-size: 0.88rem;
+}
+
+.education-card__gpa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--mint), var(--sky));
+  color: #1c2a24;
+}
+
+.education-card__gpa span {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.education-card__gpa small {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.education-courses {
+  margin-top: 22px;
+}
+
+.education-courses h4 {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.education-courses__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.education-courses__list span {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 500;
+}
