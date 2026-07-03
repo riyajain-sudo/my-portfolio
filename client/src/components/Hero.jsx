@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import CurvedHelix from "./CurvedHelix.jsx";
 import { profile } from "../data.js";
-import riyaPhoto from "../assets/riya.jpg";
+import riyaPhoto from "../../assets/riya.jpg";
 import "./Hero.css";
 
 export default function Hero() {
