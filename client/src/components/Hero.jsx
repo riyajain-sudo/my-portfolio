@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import DnaHelix from "./DnaHelix.jsx";
+import CurvedHelix from "./CurvedHelix.jsx";
 import { profile } from "../data.js";
-import riyaPhoto from "../../assets/riya.jpg";
+import riyaPhoto from "../assets/riya.jpg";
 import "./Hero.css";
 
 export default function Hero() {
@@ -35,8 +35,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="hero__portrait">
-            <DnaHelix className="hero__portrait-helix hero__portrait-helix--left" />
-            <DnaHelix className="hero__portrait-helix hero__portrait-helix--right" />
+            <CurvedHelix className="hero__portrait-helix hero__portrait-helix--left" colorOffset={0} />
+            <CurvedHelix
+              className="hero__portrait-helix hero__portrait-helix--right"
+              mirror
+            />
             <div className="hero__portrait-frame">
               <img src={riyaPhoto} alt={profile.name} />
             </div>

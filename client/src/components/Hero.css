@@ -47,8 +47,8 @@
 
 .hero__portrait {
   position: relative;
-  width: 560px;
-  height: 460px;
+  width: 460px;
+  height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,41 +57,41 @@
 .hero__portrait-helix {
   position: absolute;
   top: 50%;
-  width: 130px;
-  height: 340px;
-  max-height: none;
+  width: 190px;
+  height: 480px;
   transform: translateY(-50%);
   z-index: 1;
-  opacity: 0.9;
 }
 
 .hero__portrait-helix--left {
-  left: -10px;
+  top: auto;
+  left: 25px;
+  z-index: 3;
 }
 
 .hero__portrait-helix--right {
-  right: 20px; /* Move it left */
-  top: 52%;
-  transform: translateY(-50%) scaleX(-1) rotate(-18deg);
+  right: 45px;
+  z-index: 1;
+  /* transform: translateY(-50%) scaleX(-1); */
+  top: auto;
+  width: 140px;
+  height: 380px;
 }
 
 .hero__portrait-frame {
   position: relative;
   z-index: 2;
-  width: 360px;
-  height: 360px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--surface);
-  border: 6px solid var(--surface);
-  box-shadow: 0 0 0 2px var(--border), var(--shadow);
 }
 
 .hero__portrait-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center top;
 }
 
 .hero__blob {
@@ -137,64 +137,20 @@
   }
   .hero__portrait {
     width: 300px;
-    height: 260px;
+    height: 320px;
   }
-  
   .hero__portrait-helix {
-  position: absolute;
-  top: 50%;
-  width: 170px;
-  height: 400px;
-  max-height: none;
-  z-index: 1;
-  opacity: 0.95;
-  transition: transform 0.3s ease;
-}
+    width: 130px;
+    height: 320px;
+  }
   .hero__portrait-helix--left {
-  left: -40px;
-  top: 48%;
-  transform: translateY(-50%) rotate(-18deg);
-}
+    left: -45px;
+  }
   .hero__portrait-helix--right {
-  right: -80px;
-  top: 100%;
-  transform: translateY(-50%) scaleX(-1) rotate(-18deg);
-}
+    right: -45px;
+  }
   .hero__portrait-frame {
     width: 200px;
     height: 200px;
   }
-}
-
-
-@keyframes floatDNA {
-  0% {
-    transform: translateY(-50%) rotate(-18deg);
-  }
-  50% {
-    transform: translateY(calc(-50% - 8px)) rotate(-15deg);
-  }
-  100% {
-    transform: translateY(-50%) rotate(-18deg);
-  }
-}
-
-.hero__portrait-helix--left {
-  animation: floatDNA 4s ease-in-out infinite;
-}
-
-@keyframes floatDNARight {
-  0% {
-    transform: translateY(-50%) scaleX(-1) rotate(-18deg);
-  }
-  50% {
-    transform: translateY(calc(-50% + 8px)) scaleX(-1) rotate(-15deg);
-  }
-  100% {
-    transform: translateY(-50%) scaleX(-1) rotate(-18deg);
-  }
-}
-
-.hero__portrait-helix--right {
-  animation: floatDNARight 4s ease-in-out infinite;
 }
