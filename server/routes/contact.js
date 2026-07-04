@@ -1,5 +1,12 @@
 import { Router } from "express";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+// Load environment variables here too, so this module doesn't depend on
+// import order in server.js (imports are evaluated before top-level code
+// in server.js runs, so relying on server.js's dotenv.config() left
+// EMAIL_USER / EMAIL_APP_PASSWORD undefined at transporter-creation time).
+dotenv.config();
 
 const router = Router();
 
@@ -21,6 +28,17 @@ transporter.verify((error, success) => {
   }
 });
 
+// Minimal HTML-escaping so form input can't break the email's markup.
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  }[c]));
+}
+
 router.post("/", async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -38,14 +56,10 @@ router.post("/", async (req, res) => {
       subject: `New Portfolio Message from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
-
-        <p><strong>Name:</strong> ${name}</p>
-
-        <p><strong>Email:</strong> ${email}</p>
-
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
       `,
     });
 
@@ -53,15 +67,11 @@ router.post("/", async (req, res) => {
       success: true,
       message: "Message sent successfully!",
     });
-
   } catch (err) {
-
     console.error(err);
-
     res.status(500).json({
       error: "Failed to send email.",
     });
-
   }
 });
 
