@@ -144,10 +144,12 @@
     height: 320px;
   }
   .hero__portrait-helix--left {
-    left: -45px;
+    left: 15px;
   }
   .hero__portrait-helix--right {
-    right: -45px;
+    right: 20px;
+    width: 100px;
+    height: 215px;
   }
   .hero__portrait-frame {
     width: 200px;
