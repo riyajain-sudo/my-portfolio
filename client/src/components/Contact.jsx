@@ -3,7 +3,8 @@ import Reveal from "./Reveal.jsx";
 import { profile } from "../data.js";
 import "./Contact.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL =
+  (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
