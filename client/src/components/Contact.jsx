@@ -23,11 +23,15 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Request failed. Your draft is still here.");
+      if (data.delivered !== true || data.stored !== true) {
+        throw new Error("The server did not confirm delivery or storage. Your draft is still here.");
+      }
       setStatus("sent");
       setForm({ name: "", email: "", message: "" });
     } catch (err) {
-      setStatus("error");
+      setStatus(err.message.includes("Demo only") ? "demo" : "error");
     }
   };
 
@@ -43,8 +47,7 @@ export default function Contact() {
           <Reveal delay={0.05}>
             <div className="contact__info">
               <p>
-                Whether it's a bioinformatics idea, a web project, or just to say hi —
-                my inbox is open.
+                The contact form below is a non-delivery demo. Use the email link to contact me directly.
               </p>
               <div className="contact__links">
                 <a href={`mailto:${profile.email}`}>{profile.email}</a>
@@ -62,6 +65,7 @@ export default function Contact() {
                   type="text"
                   name="name"
                   required
+                  maxLength={80}
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Your name"
@@ -73,6 +77,7 @@ export default function Contact() {
                   type="email"
                   name="email"
                   required
+                  maxLength={254}
                   value={form.email}
                   onChange={handleChange}
                   placeholder="you@example.com"
@@ -83,6 +88,7 @@ export default function Contact() {
                 <textarea
                   name="message"
                   required
+                  maxLength={4000}
                   rows={5}
                   value={form.message}
                   onChange={handleChange}
@@ -92,10 +98,11 @@ export default function Contact() {
               <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
                 {status === "sending" ? "Sending…" : "Send message"}
               </button>
-              {status === "sent" && <p className="contact__status contact__status--ok">Message sent — thank you!</p>}
+              {status === "sent" && <p className="contact__status contact__status--ok" role="status">Message delivered — thank you!</p>}
+              {status === "demo" && <p className="contact__status contact__status--error" role="status">Demo only: this message was not sent or stored. Your draft remains in the form.</p>}
               {status === "error" && (
-                <p className="contact__status contact__status--error">
-                  Couldn't reach the server. Make sure the backend is running.
+                <p className="contact__status contact__status--error" role="status">
+                  Couldn't confirm delivery. Your draft remains in the form.
                 </p>
               )}
             </form>
