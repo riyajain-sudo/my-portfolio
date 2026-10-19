@@ -2,32 +2,34 @@ import { Router } from "express";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  const { name, email, message } = req.body;
+export function submitContact(req, res) {
+  const body = req.body;
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return res.status(400).json({ success: false, message: "A JSON object is required." });
+  }
+  const limits = { name: 80, email: 254, message: 4000 };
+  const errors = {};
+  for (const [field, limit] of Object.entries(limits)) {
+    if (typeof body[field] !== "string") errors[field] = "Must be text.";
+    else if (body[field].length > limit) errors[field] = "Field is too long.";
+  }
+  if (Object.keys(errors).length) return res.status(400).json({ success: false, errors });
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "Name, email, and message are all required." });
+  const name = body.name.trim();
+  const email = body.email.trim();
+  const message = body.message.trim();
+  if (!name || !email || !message || !/^\S+@\S+\.\S+$/.test(email)) {
+    return res.status(400).json({ success: false, message: "Please provide a name, valid email, and message." });
   }
 
-  // For now, just log the submission. See README.md → "Wiring up real email"
-  // to send yourself an actual email using nodemailer. Example, once installed:
-  //
-  //   import nodemailer from "nodemailer";
-  //   const transporter = nodemailer.createTransport({
-  //     service: "gmail",
-  //     auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_APP_PASSWORD },
-  //   });
-  //   await transporter.sendMail({
-  //     from: email,
-  //     to: process.env.EMAIL_USER,
-  //     subject: `Portfolio message from ${name}`,
-  //     text: message,
-  //   });
+  // This endpoint intentionally has no email or persistence integration.
+  return res.status(503).json({
+    success: false,
+    code: "DEMO_ONLY",
+    message: "Demo only: this message was not sent or stored.",
+  });
+}
 
-  console.log("New contact form submission:");
-  console.log({ name, email, message, receivedAt: new Date().toISOString() });
-
-  res.status(200).json({ success: true, message: "Message received — thank you!" });
-});
+router.post("/", submitContact);
 
 export default router;
