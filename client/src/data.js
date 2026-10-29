@@ -57,6 +57,13 @@ export const experience = [
 
 export const projects = [
   {
+    title: "AI Drug-Target Interaction Predictor",
+    year: "2026",
+    tags: ["Python", "React", "BindingDB", "Gemini API"],
+    description:
+      "Developed a protein–molecule interaction prediction tool using 4,500 BindingDB data pairs across 30 proteins. Trained XGBoost models for six kinases and a PyTorch model for protein sequence-based predictions, achieving ROC AUC scores of 0.884 and 0.613, respectively. Integrated SHAP-based interpretability and Gemini-generated explanations into a full-stack application built with FastAPI and React.",
+  },
+  {
     title: "In Silico Functional Characterization of Human p53 Protein",
     year: "2026",
     tags: ["Python", "Biopython", "NCBI BLAST", "UniProt API"],
