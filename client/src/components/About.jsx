@@ -15,9 +15,7 @@ export default function About() {
 
         <div className="about__grid">
           {[
-            { label: "Focus", value: "Bioinformatics × Web Dev × Gen AI", color: "var(--lavender)" },
             { label: "Currently", value: "B.Tech Biotechnology, 4th year", color: "var(--mint)" },
-            { label: "Based in", value: "Gwalior, India", color: "var(--peach)" },
           ].map((item, i) => (
             <Reveal delay={0.1 + i * 0.08} key={item.label}>
               <div className="about__card" style={{ "--tint": item.color }}>

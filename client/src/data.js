@@ -3,10 +3,9 @@
 export const profile = {
   name: "Riya Jain",
   tagline: "Biotechnology undergrad building at the intersection of code and biology.",
-  bio: "I'm a biotechnology student who fell in love with building things. Somewhere between wet-lab protocols and late-night bug fixes, I started stitching bioinformatics, web development, and generative AI together — and I haven't stopped since.",
-  email: "riya.jain.connect1@gmail.com",
-  linkedin: "https://www.linkedin.com/in/riya-jain-biotech/", // update with your real profile URL
-  github: "https://github.com/riyajain-sudo", // update with your real profile URL
+  bio: "Biotechnology undergraduate with a foundation in laboratory techniques and Python-based projects, interested in machine learning, bioinformatics, and drug discovery. Also exploring web development, backend technologies, and database management, with an interest in applying technical skills across biotechnology and IT.",
+  linkedin: "https://www.linkedin.com/in/riya-jain-biotech/", 
+  github: "https://github.com/riyajain-sudo", 
 };
 
 export const skills = [
@@ -34,16 +33,26 @@ export const skills = [
 
 export const experience = [
   {
+    role: "Intern",
+    org: "Jawaharlal Nehru University, Delhi",
+    period: "Jul 2026 – Aug 2026",
+    points: [
+      "Performed aseptic handling, media preparation, microbial culturing, and bacterial isolation using standard microbiological techniques.",
+      "Assisted in the revival and cultivation of Staphylococcus aureus for antimicrobial resistance studies.",
+      "Performed genomic DNA isolation from soil samples and maintained laboratory records following biosafety practices.",
+    ],
+  },
+
+  {
     role: "Trainee Intern",
     org: "SN Medical College, Agra",
     period: "Jul 2025 – Aug 2025",
     points: [
-      "Assisted in laboratory experiments and diagnostic testing procedures.",
-      "Observed and worked with ELISA and CLIA techniques used for hormone and disease testing.",
+      "Performed TSH estimation in female serum samples using ELISA and assisted with automated CLIA-based analysis.",
       "Helped with sample handling, data recording, and report preparation.",
       "Gained exposure to clinical laboratory workflows and diagnostic instruments.",
     ],
-  },
+  }
 ];
 
 export const projects = [
